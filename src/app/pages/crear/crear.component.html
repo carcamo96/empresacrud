@@ -1,0 +1,131 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Empresa</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" [routerLink]="['/crear']" [routerLinkActive]="['active']">Crear registro de una empresa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/listar']" [routerLinkActive]="['active']">Ver todos los registros de empresas</a>
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<section class="content">
+  <div class="container-fluid">
+    <div>
+
+      <p *ngIf="mensaje.length > 0" class="text-success">{{ mensaje }}</p>
+      <br>
+      <form role="form"
+            #empresaForm="ngForm">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="nombrePaciente">Nombre de la empresa: </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="nombreCliente"
+                        placeholder="Nombres de al empresa"
+                        autofocus
+                        #nombreCliente="ngModel"
+                        [(ngModel)]="empresa.nombre"
+                        required
+                        autocomplete="off"
+                      />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="apellidosPaciente">NIT: </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="nitEmpre"
+                        placeholder="Número de NIT"
+                        autocomplete="off"
+                        #nit="ngModel"
+                        [(ngModel)]="empresa.nit"
+                        required
+                        autocomplete="off"
+                      />
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Fecha de Fundación:</label>
+                    <div class="input-group date">
+
+                      <input
+                        type="date"
+                        class="form-control"
+                        name="fechaFun"
+                        #fechaFun="ngModel"
+                        [(ngModel)]="empresa.fechaFundacion"
+                      />
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                  <!-- textarea -->
+                  <div class="form-group">
+                    <label>Dirección:</label>
+                    <textarea
+                      id="notas"
+                      class="form-control"
+                      rows="3"
+                      placeholder="Dirección ..."
+                      autocomplete="off"
+                      name="notasForm"
+                      #notas="ngModel"
+                      [(ngModel)]="empresa.direccion"
+                    >
+                    </textarea>
+                  </div>
+                </div>
+            </div>
+            <br>
+            <div class="card-footer">
+              <button
+                type="button"
+                id="crear"
+                class="btn btn-info"
+                [disabled]="!empresaForm.valid"
+                (click)="onSubmitEmpresa()">
+                  Registrar empresa <i class="fas fa-check"></i>
+              </button>
+              <button
+                type="button"
+                id="limpiar"
+                class="btn btn-secondary ml-3 mr-0"
+                (click)="limpiar()">
+                Limpiar
+              </button>
+
+            </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+
+
+
